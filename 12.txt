@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+
+bool = False
+page = 1
+article = {}
+print("Подождите идёт прогрузка")
+while bool == False:
+
+    try:
+        url = requests.get(f"https://quotes.toscrape.com/page/{page}")
+        out = BeautifulSoup(url.text, 'html.parser')
+        if len(out.find_all(attrs={"class": "author"})) == 0:
+            bool = True
+        for i in out.find_all(attrs={"class": "author"}):
+            for j in i:
+                article[j] = article.get(j, 0) + 1
+        page += 1
+    except:
+        bool = True
+
+link = sorted(article.items(), key=lambda x: x[1], reverse=True)
+for i in link:
+    print(i)

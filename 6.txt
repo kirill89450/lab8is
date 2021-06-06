@@ -1,0 +1,8 @@
+import wget
+
+
+
+print('Карта скачана')
+
+url = 'https://static-maps.yandex.ru/1.x/?ll=136.941743%2C-25.904842&spn=25.980657,20.91015&z=12&l=map'
+wget.download(url, 'C:/Users/kirih/Desktop/lab geo/image1.jpg')

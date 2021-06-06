@@ -1,0 +1,10 @@
+from yandex_geocoder import Client
+import key
+
+client = Client(key.key)
+addresss = ['улица Петровка, 38']
+coordinate = client._request(addresss[0])
+Target = coordinate['GeoObjectCollection']['featureMember']
+Find = Target[0]
+Write = Find['GeoObject']['metaDataProperty']['GeocoderMetaData']['Address']['postal_code']
+print('Индекс по адресу', addresss[0], ': ', Write)

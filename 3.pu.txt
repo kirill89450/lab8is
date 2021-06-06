@@ -1,0 +1,10 @@
+from yandex_geocoder import Client
+
+client = Client("c6567139-9943-40ca-ae34-246de1defa3a")
+
+coordinates = client.coordinates("Красная площадь 1")
+a, b = coordinates
+print("Координаты: ", a, b)
+
+address = client.address(a, b)
+print("Адрес: ", address)

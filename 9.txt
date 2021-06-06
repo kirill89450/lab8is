@@ -1,0 +1,33 @@
+from yandex_geocoder import Client
+import math
+import key
+
+client = Client(key.key)
+
+City = []
+input_city = 0
+Corder = {}
+Len = {}
+South = -1000
+while (input_city != ''):
+    input_city = input("Введите название города ")
+    City.append(input_city)
+City.remove(input_city)
+
+print(City)
+
+for i in range(len(City)):
+    coordinates = client.coordinates(City[i])
+    Corder[City[i]] = coordinates
+
+for key in Corder:
+    X, Y = Corder[key]
+    Len[key] = math.sqrt((0 - X) ** 2 + (-90 - Y) ** 2)
+
+for key in Len:
+    if South == -1000:
+        South = Len[key]
+    if South > Len[key]:
+        South = Len[key]
+
+print(list(Len.keys())[list(Len.values()).index(South)], ' Южнее')

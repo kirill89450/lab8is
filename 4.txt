@@ -1,0 +1,12 @@
+from yandex_geocoder import Client
+import key
+
+client = Client(key.key)
+city=["Барнаул","Мелеуз","Йошкар-Ола"]
+for i in range (3):
+    coordinate = client._request(city[i])
+    Target = coordinate['GeoObjectCollection']['featureMember']
+    Find = Target[0]
+    Write = Find['GeoObject']['metaDataProperty']['GeocoderMetaData']['AddressDetails']['Country']['AdministrativeArea'][
+        'AdministrativeAreaName']
+    print('Область города ',city[i], ':', Write)

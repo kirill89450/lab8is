@@ -1,0 +1,2 @@
+key='c6567139-9943-40ca-ae34-246de1defa3a'
+url="http://olympus.realpython.org/profiles"

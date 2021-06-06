@@ -1,0 +1,33 @@
+import telebot
+import requests
+from bs4 import BeautifulSoup
+
+TOKEN = "1855280533:AAHrali0b5n_FQdKmZqLQajiKNa4UQb3lOo"
+
+bot = telebot.TeleBot(TOKEN)
+
+
+@bot.message_handler(commands=['price'])
+def price(message):
+    page = 1
+    bool = False
+    while bool == False:
+        try:
+            url = f"https://scrapingclub.com/exercise/list_basic/?page={page}"
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            items = soup.find_all('div', class_='col-lg-4 col-md-6 mb-4')
+            page += 1
+
+            for n, i in enumerate(items, start=1):
+                itemName = i.find('h4', class_='card-title').text.strip()
+                itemPrice = i.find('h5').text
+                bot.send_message(message.chat.id, f' {itemPrice} за {itemName}')
+        except:
+            bool=True
+
+
+
+
+
+bot.polling(none_stop=True)

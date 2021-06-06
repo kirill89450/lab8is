@@ -1,0 +1,11 @@
+from yandex_geocoder import Client
+import key
+import wget
+
+
+client = Client(key.key)
+
+
+url = 'https://static-maps.yandex.ru/1.x/?l=map&pt=86.060110,55.344206,pm2bl,1~86.122443,55.392252,pm2dbl,2~86.07190,55.375474,pm2ywl,3~86.127962%2C55.342233,pm2wtl'
+wget.download(url, 'C:/Users/kirih/Desktop/lab geo/image2.jpg')
+print("Фотографии скачаны")
